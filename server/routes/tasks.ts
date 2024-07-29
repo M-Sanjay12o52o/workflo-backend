@@ -22,7 +22,7 @@ router.post('/', taskValidationRules, async (req: Request, res: Response) => {
 
     const { title, description, status, priority, deadline } = req.body;
 
-    console.log(title, description, status, priority, deadline);
+    console.log("backend: ", title, description, status, priority, deadline);
 
     try {
         const task = new TaskModel({ title, description, status, priority, deadline });
