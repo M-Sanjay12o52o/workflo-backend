@@ -3,6 +3,8 @@ import taskRoutes from "./routes/tasks"
 import cors from "cors";
 import mongoose from "mongoose";
 
+require('dotenv').config();
+
 const app = express();
 const port = process.env.PORT || 3001;
 
@@ -13,7 +15,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // connect to MongoDB
 // const mongoUrl = process.env.MONGO_URL;
-const mongoUrl = "mongodb://localhost:27017/workflow";
+const mongoUrl = process.env.MONGO_URL;
+
 if (!mongoUrl) {
     throw new Error('MONGO_URL environment variable is not set');
 }
