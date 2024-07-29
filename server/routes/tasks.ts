@@ -1,16 +1,9 @@
 import { TaskModel } from "../models/task";
 import { Router, Request, Response } from "express";
 import { body, validationResult } from "express-validator";
+import taskValidationRules from "./taskvalidation";
 
 const router = Router();
-
-const taskValidationRules = [
-    body('title').notEmpty().withMessage('Title is required').isString().withMessage('Invalid value for title'),
-    body('description').notEmpty().withMessage('Description is required').isString().withMessage('Invalid value for description'),
-    body('status').notEmpty().withMessage('Status is required').isString().withMessage('Invalid value for status'),
-    body('priority').isInt({ min: 1 }).withMessage('Priority must be a positive integer'),
-    body('deadline').isISO8601().toDate().withMessage('Deadline must be a valid date')
-];
 
 // Create a new task
 router.post('/', taskValidationRules, async (req: Request, res: Response) => {
